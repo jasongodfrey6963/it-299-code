@@ -34,7 +34,9 @@ const password = defineModel('password')
 const handleLogin = async () => {
   console.log(userName.value, password.value)
     await auth.login( userName.value, password.value)
-    router.push('/dashboard')
+    if(auth.isAuthenticated) {
+        router.push('/dashboard')
+    }
   
 }
 </script>

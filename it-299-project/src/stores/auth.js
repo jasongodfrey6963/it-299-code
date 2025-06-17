@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -53,6 +55,7 @@ export const useAuthStore = defineStore('auth', {
                 
             } finally {
                 this.loading = false
+                
             }
         },
         
@@ -68,7 +71,7 @@ export const useAuthStore = defineStore('auth', {
         async fetchUser() {
             if (!this.token) return
             try { 
-                const res = await axios.get('/clients/user')
+                const res = await axios.get('http://localhost:3001/clients/user')
                 this.user = res.data.userName
             } catch (error) {
                 this.logout()
